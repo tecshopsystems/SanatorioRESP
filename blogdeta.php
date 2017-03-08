@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -342,45 +346,165 @@
                 <!-- Mobile Menu Area end -->		   
             </header>
             <!-- header end -->
-             <!-- Carrusel de novedades -->
-                <div class="what-we-do-area bg-white ptb-70" >
+            <div class="main-content-wrapper">
+                  <!-- banner start -->
+                <div class="banner-area blog">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="default-title">
-                                    <h2>Clínica de obesidad y cirugías bariátricas<span></span></h2>
-                                    <p><br> </p> 
+                                <div class="banner-text text-center">
+                                    <div class="banner-title">
+                                        <h2>blog</h2>
+                                    </div>
+                                    <div class="breadcrumbs">
+                                        <ul>
+                                            <li><a href="index.html">Inicio</a>></li>
+                                            <li><a href="pruebas.php">Regresar</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>  
-                        </div>
-                        <div class="row">       
-                               <!-- CARRUSEL DE PROMOCIONES-->   
-       
-
-     <!-- Indicators -->
- 
-
-  <!-- Wrapper for slides -->
-
-  
-    <div align="center" class="">
-     <a   href="promo1.html"><img src="img/promociones/4.jpg" alt="Chania"></a>
-    </div>
-
-    
-  
-
-  <!-- Left and right controls -->
-  
-</div>
-                   <!-- CARRUSEL DE PROMOCIONES fin-->        
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- what-we-do end -->
-                <!-- client area end -->
-                  <!-- footer start -->
-                <footer class="footer-area">
+                <!-- banner end -->
+
+                     <?php
+                   
+$servername = "localhost";
+$username = "tecshops_selectt";
+$password = "Anabantha666";
+$dbname = "tecshops_sanatorio_blog";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "select  imagen, fecha, titulo, autor, especialidad, parte1, parte2, parte3, parte4, parte5, parte6 from blog where id =´".$_GET['id']."´";
+$result = $conn->query($sql);
+
+//if ($result->num_rows > 0) {
+    // output data of each row
+  //  while($row = $result->fetch_assoc()) {
+    //    echo "id: " . $row["nombre_autor"]. " - Name: " . $row["especialidad"]. " " . $row["titulo_post"]. "<br>";
+    //}
+//} else {
+  //  echo "0 results";
+//}
+
+					if ($result->num_rows > 0) {
+					while ($row = $result->fetch_assoc()){
+                        $id=$row["id"];
+                        $imagen=$row["imagen"];
+                        $fecha= $row["fecha"];
+                        $titulo= $row["titulo"];
+                        $autor= $row["autor"];
+                        $especialidad= $row["especialidad"];
+                        $parte1= $row["parte1"];
+                        $parte1= $row["parte2"];
+                        $parte1= $row["parte3"];
+                        $parte1= $row["parte4"];
+                        $parte1= $row["parte5"];
+                        $parte1= $row["parte6"];
+				?>
+                <!-- blog details area start -->
+                <div class="blog-details marg-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                                <div class="single-latest-blog bg-white">
+                                    <div class="single-latest-blog-img">
+                                        <img src="<?php echo $imagen;?>" alt="">
+                                        <div class="single-latest-blog-date">
+                                            <h4><?php echo $fecha;?></h4>
+                                          
+                                        </div>
+                                    </div>
+                                    <div class="single-latest-blog-info">
+                                        <h4><?php echo $titulo;?></h4>
+                                        <h6><?php echo $autor?></h6>
+                                        <p><?php echo $parte1;?></p>
+                                        <p><?php echo $parte2;?></p>
+                                        <quotation><?php echo $;?></quotation>
+                                        <p><?php echo $parte3;?></p>
+                                    </div>
+                                </div>
+                                
+                   <?php
+
+                       } } else {
+    echo "0 results";
+    }
+						
+					
+				?>             
+                                <div class="leave-comment comments">
+                                    <div class="comments-title">
+                                        <h4>Queremos conocer su opinion.</h4>
+                                    </div>
+                                    <div class="comment-form">
+                                        <form id="contact-form" action="mail.php" method="post">
+                                            <input type="text" placeholder="Nombre" name="name">
+                                            <input type="text" placeholder="Email" name="email">
+                                            <input class="f-wid" type="text" placeholder="Asunto" name="subject">
+                                            <textarea cols="30" rows="9" placeholder="Escribenos" name="message"></textarea>
+                                            <button type="submit">ENVIAR</button>
+                                        </form>
+                                        <p class="form-message"></p>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                                <div class="blog-sidebar">
+                                    <div class="blog-single-sidebar">
+                                        <h3>Categotías</h3>
+                                        <ul>
+                                            <li><a href="#">business <span>(15)</span></a></li>
+                                            <li><a href="#">corporate <span>(12)</span></a></li>
+                                            <li><a href="#">design <span>(25)</span></a></li>
+                                            <li><a href="#">creative <span>(15)</span></a></li>
+                                            <li><a href="#">technology <span>(18)</span></a></li>
+                                            <li><a href="#">development <span>(20)</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="blog-single-sidebar">
+                                        <h3>Podría interesarle.</h3>
+                                        <div class="latest-post-img">
+                                            <img src="img/blog/l1.jpg" alt="">
+                                        </div>
+                                        <div class="latest-post-info">
+                                            <h4><a href="#">Business Ideas</a></h4>
+                                            <h6>Ronchi/06 Jun, 2016</h6>
+                                            <p>Lorem must explain to ten how all this </p>
+                                        </div>
+                                        <div class="latest-post-img">
+                                            <img src="img/blog/l2.jpg" alt="">
+                                        </div>
+                                        <div class="latest-post-info">
+                                            <h4><a href="#">Design Trends</a></h4>
+                                            <h6>Silvia / 10 Jun, 2016</h6>
+                                            <p>Lorem must explain to ten how all this </p>
+                                        </div>
+                                        <div class="latest-post-img">
+                                            <img src="img/blog/l3.jpg" alt="">
+                                        </div>
+                                        <div class="latest-post-info">
+                                            <h4><a href="#">Development Tips</a></h4>
+                                            <h6>Silvia / 10 Jun, 2016</h6>
+                                            <p>Lorem must explain to ten how all this </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <!-- blog area end -->
+                   <footer class="footer-area">
                     <div class="main-footer-area ptb-90">
                         <div class="container">
                             <div class="row">

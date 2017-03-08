@@ -1,7 +1,8 @@
+<? session_start() ?> 
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
-        <meta charset="utf-8">
+       <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Sanatorio Español </title>
         <meta name="description" content="">
@@ -342,45 +343,103 @@
                 <!-- Mobile Menu Area end -->		   
             </header>
             <!-- header end -->
-             <!-- Carrusel de novedades -->
-                <div class="what-we-do-area bg-white ptb-70" >
+            <div class="main-content-wrapper">
+                <!-- banner start -->
+                <div class="banner-area blog">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="default-title">
-                                    <h2>Clínica de obesidad y cirugías bariátricas<span></span></h2>
-                                    <p><br> </p> 
+                                <div class="banner-text text-center">
+                                    <div class="banner-title">
+                                        <h2>bienvenido a nuestro blog</h2>
+                                    </div>
+                                    
                                 </div>
-                            </div>  
-                        </div>
-                        <div class="row">       
-                               <!-- CARRUSEL DE PROMOCIONES-->   
-       
-
-     <!-- Indicators -->
- 
-
-  <!-- Wrapper for slides -->
-
-  
-    <div align="center" class="">
-     <a   href="promo1.html"><img src="img/promociones/4.jpg" alt="Chania"></a>
-    </div>
-
-    
-  
-
-  <!-- Left and right controls -->
-  
-</div>
-                   <!-- CARRUSEL DE PROMOCIONES fin-->        
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- what-we-do end -->
-                <!-- client area end -->
-                  <!-- footer start -->
-                <footer class="footer-area">
+                <!-- banner end -->
+                <?php
+                   
+$servername = "localhost";
+$username = "tecshops_selectt";
+$password = "Anabantha666";
+$dbname = "tecshops_sanatorio_blog";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "select id, imagen, fecha, titulo, autor, especialidad, parte1, parte2, parte3, parte4, parte5, parte6 from blog";
+$result = $conn->query($sql);
+
+//if ($result->num_rows > 0) {
+    // output data of each row
+  //  while($row = $result->fetch_assoc()) {
+    //    echo "id: " . $row["nombre_autor"]. " - Name: " . $row["especialidad"]. " " . $row["titulo_post"]. "<br>";
+    //}
+//} else {
+  //  echo "0 results";
+//}
+
+?>
+                
+                <div class="latest-blog bg-white marg-100">
+                     <div class="container">
+                        <div class="row">
+                    <?php
+					if ($result->num_rows > 0) {
+					while ($row = $result->fetch_assoc()){
+                        $id=$row["id"];
+                        $imagen=$row["imagen"];
+                        $fecha= $row["fecha"];
+                        $titulo= $row["titulo"];
+                        $autor= $row["autor"];
+                        $especialidad= $row["especialidad"];
+                        $parte1= $row["parte1"];
+                        $parte1= $row["parte2"];
+                        $parte1= $row["parte3"];
+                        $parte1= $row["parte4"];
+                        $parte1= $row["parte5"];
+                        $parte1= $row["parte6"];
+				?>
+                    
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="single-latest-blog bg-white">
+                                    <div class="single-latest-blog-img">
+                                        <img src="<?php echo  $row["imagen"] ?>" alt="">
+                                        <div class="single-latest-blog-date">
+                                            <h4><?php echo  $row["fecha"] ?></h4>
+                                            <h6><?php echo  $row["especialidad"] ?></h6>
+                                        </div>
+                                        <a class="read-more" href="blogdeta.php?id=<?php echo $id ?>">re</a>
+                                    </div>
+                                    <div class="single-latest-blog-info">
+                                        <h4><a href="#"><?php echo  $row["titulo"] ?></a></h4>
+                                        <h6><?php echo $row["autor"] ?></h6>
+                                        <p><?php echo $row["parte1"] ?></p>
+                                    </div>
+                                </div>
+                         
+                    </div>
+                    <?php
+
+                       } } else {
+    echo "0 results";
+    }
+						
+					
+				?>
+
+                      </div>
+                    </div>
+                </div>
+                <!-- blog area end -->
+                        <footer class="footer-area">
                     <div class="main-footer-area ptb-90">
                         <div class="container">
                             <div class="row">
